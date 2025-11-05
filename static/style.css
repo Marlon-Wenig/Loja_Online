@@ -435,3 +435,48 @@ footer p {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+
+/* Centraliza tudo verticalmente e horizontalmente */
+.centralizado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 80px; /* espaço para o header fixo */
+  box-sizing: border-box;
+  background-color: #f4f6f8;
+}
+
+/* Agrupa banner + formulário */
+.conteudo-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Banner ajustado */
+.login-hero-img {
+  width: 360px;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Formulário centralizado */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.login-form label {
+  display: block;
+  margin-top: 12px;
+  color: #5b2b2b;
+  font-weight: 600;
+}

@@ -5,28 +5,27 @@
     <title>Cadastro - Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-    <!-- Banner compacto reutilizado -->
-    <section class="login-hero" aria-label="Banner Maju Store (cadastro)">
-        <img src="/static/imagens/maju-banner-login-360x155.png" alt="Bem-vindos à Maju Store" class="login-hero-img">
-    </section>
+<body class="centralizado">
+    <div class="conteudo-login">
+        <section class="login-hero">
+            <img src="/static/imagens/maju-banner-login-360x155.png" alt="Bem-vindos à Maju Store" class="login-hero-img">
+        </section>
+        
+        <div class="login-container">
+            <h2>Login</h2>
+            <form class="login-form" method="POST" action="/login">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
 
-    <div class="login-container">
-        <h2>Cadastro</h2>
-        <form class="login-form" method="POST">
-            <label for="nome">Nome completo</label>
-            <input id="nome" name="nome" type="text" required>
+                <label for="senha">Senha</label>
+                <input id="senha" name="senha" type="password" required>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-
-            <label for="senha">Senha</label>
-            <input id="senha" name="senha" type="password" required>
-
-            <button type="submit">Cadastrar</button>
-        </form>
-        <p class="cadastro-link">Já tem conta? <a href="/login">Faça login</a></p>
+                <button type="submit">Entrar</button>
+            </form>
+            <p class="cadastro-link">Não tem conta? <a href="/cadastro">Cadastrar-se</a></p>
+        </div>
     </div>
+
 
     <footer>
         <p>&copy; 2025 Maju Store. Todos os direitos reservados.</p>
