@@ -4,35 +4,6 @@
     <meta charset="UTF-8">
     <title>Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
-    <style>
-      /* Hero banner styles (adapte ao seu arquivo CSS principal se preferir) */
-      .hero { position: relative; width: 100%; overflow: hidden; background: #f9e8ea; display:block; }
-      .hero-img { width: 100%; height: 320px; object-fit: cover; display:block; filter: saturate(0.98); }
-      .hero-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: left; color: #5b2b2b; padding: 18px; max-width: 1100px; width: calc(100% - 40px); display:flex; align-items:center; gap:20px; }
-      .hero-text { background: rgba(255,255,255,0.65); padding: 16px 22px; border-radius: 10px; backdrop-filter: blur(4px); }
-      .hero-text h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin: 0 0 6px; color:#5b2b2b; }
-      .hero-text p { margin: 0 0 10px; color:#6b4b4b; font-size: 1rem; }
-      .hero-cta { display:inline-block; background:#f7b3b3; color:#5b2b2b; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600; }
-      /* floral/illustration placeholder positioning for visual balance */
-      .hero-decoration { display:none; }
-      @media (min-width:800px){
-        .hero-img { height: 420px; }
-        .hero-text h1 { font-size: 2.8rem; }
-        .hero-text p { font-size: 1.05rem; }
-        .hero-decoration { display:block; position:absolute; top:10px; right:10px; width:200px; height:200px; opacity:0.95; pointer-events:none; }
-      }
-      @media (max-width:599px){
-        .hero-img { height: 260px; }
-        .hero-content { top: 58%; transform: translate(-50%,-58%); }
-        .hero-text h1 { font-size:1.4rem; }
-      }
-
-      /* Pequenos ajustes de layout para o resto da página */
-      header { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#fff; border-bottom:1px solid #eee; position:relative; z-index:20; }
-      header h1 { margin:0; font-size:1.2rem; color:#5b2b2b; }
-      nav a { margin-left:12px; color:#5b2b2b; text-decoration:none; font-weight:600; }
-      .hero .hero-img + .hero-content { pointer-events:none; } /* impede clique na camada de texto sobre a imagem */
-    </style>
 </head>
 <body>
     <header>
@@ -53,7 +24,7 @@
         </nav>
     </header>
 
-    <!-- Hero banner: coloque a imagem em /static/imagens/maju-banner.jpg -->
+    <!-- Hero banner: coloque a imagem em /static/imagens/maju-banner-800x344.jpg -->
     <section class="hero" aria-label="Banner principal Maju Store">
       <img src="/static/imagens/maju-banner-800x344.jpg" alt="Bem-vindos à Maju Store — moda feminina" class="hero-img">
       <div class="hero-content" role="group" aria-hidden="false">
@@ -62,6 +33,7 @@
           <p>Um universo de moda feminina feito pra você</p>
           <a class="hero-cta" href="/produtos">Ver novidades</a>
         </div>
+        <!-- Retire esta imagem se causar sobreposição indesejada -->
         <img src="/static/imagens/maju-banner-decor.png" alt="" class="hero-decoration" aria-hidden="true">
       </div>
     </section>
@@ -101,3 +73,4 @@
     </footer>
 </body>
 </html>
+

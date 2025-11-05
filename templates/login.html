@@ -6,20 +6,28 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div class="login-banner">
-        <img src="/static/imagens/maju-banner.png" alt="Bem-vindo à Maju Store">
-    </div>
+    <!-- Banner compacto no topo do login -->
+    <section class="login-hero" aria-label="Banner Maju Store (login)">
+      <img src="/static/imagens/maju-banner-login-480x206.png" alt="Bem-vindos à Maju Store" class="login-hero-img">
+      <div class="login-hero-text" aria-hidden="true">
+        <h2>Bem-vindos à Maju Store</h2>
+      </div>
+    </section>
 
     <div class="login-container">
         <h2>Login</h2>
-        <form method="POST">
-            <input type="email" name="email" placeholder="Email" required><br>
-            <input type="password" name="senha" placeholder="Senha" required><br>
+        <form class="login-form" method="POST" action="/login">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="Marlon_sergio@hotmail.com" required>
+            <label for="senha">Senha</label>
+            <input id="senha" name="senha" type="password" required>
             <button type="submit">Entrar</button>
         </form>
         <p class="cadastro-link">Não tem conta? <a href="/cadastro">Cadastrar-se</a></p>
     </div>
-</body>
-</html>
+
+    <footer>
         <p>&copy; 2025 Maju Store. Todos os direitos reservados.</p>
     </footer>
+</body>
+</html>

@@ -1,3 +1,6 @@
+/* -------------------------
+   Estilos base (originais)
+   ------------------------- */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
     background-color: #f4f6f8;
@@ -142,8 +145,128 @@ footer p {
     color: #666;
 }
 
-.hero-img { width: 100%; max-width: 800px; height: 344px; object-fit: cover; display:block; }
-/* Ajuste para telas menores */
-@media (max-width: 600px) {
-    .hero-img { height: 200px; }
+/* -------------------------------------
+   Hero principal responsivo e proporcional
+   ------------------------------------- */
+.hero {
+    position: relative;
+    width: 100%;
+    max-height: 420px;
+    overflow: hidden;
+    background: #f9e8ea;
+    display: block;
 }
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 90%;
+    max-width: 1100px;
+    padding: 10px;
+}
+
+.hero-text {
+    background: rgba(255,255,255,0.65);
+    display: inline-block;
+    padding: 14px 18px;
+    border-radius: 10px;
+}
+
+.hero-text h1 {
+    margin: 0 0 6px;
+    font-size: 2rem;
+    color: #5b2b2b;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.hero-text p {
+    margin: 0;
+    color: #6b4b4b;
+}
+
+/* Oculta decorações em camadas que podem quebrar o layout */
+.hero-decoration {
+    display: none;
+    pointer-events: none;
+}
+
+/* Ajustes para telas grandes e pequenas */
+@media (min-width: 1200px) {
+    .hero { max-height: 600px; }
+    .hero-text h1 { font-size: 3rem; }
+}
+@media (max-width: 600px) {
+    .hero-text h1 { font-size: 1.4rem; }
+    .hero { max-height: 320px; }
+}
+
+/* -------------------------------------
+   Banner compacto para a página de login
+   ------------------------------------- */
+.login-hero {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.login-hero-img {
+    width: 480px;
+    max-width: 100%;
+    height: 206px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.login-hero-text {
+    position: relative;
+    margin-left: -320px; /* sobreposição leve em telas largas */
+    color: #5b2b2b;
+    pointer-events: none;
+}
+
+.login-hero-text h2 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    background: rgba(255,255,255,0.6);
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* Form layout ao lado do banner em telas maiores */
+@media (min-width: 900px) {
+    .login-hero { justify-content: flex-start; padding: 18px; }
+    .login-hero-img { width: 360px; height: 155px; }
+    .login-form { display: inline-block; vertical-align: middle; margin-left: 18px; max-width: 360px; width: 100%; }
+}
+
+/* Mobile: banner acima do formulário */
+@media (max-width: 899px) {
+    .login-hero { flex-direction: column; gap: 8px; padding: 8px; }
+    .login-hero-text { margin-left: 0; }
+    .login-form { margin: 0 16px; }
+}
+
+/* Campos e botão do form (login) */
+.login-form label { display: block; margin-top: 12px; color: #5b2b2b; font-weight: 600; }
+.login-form input { width: 100%; padding: 8px 10px; margin-top: 6px; border: 1px solid #e0d6d6; border-radius: 6px; }
+.login-form button { margin-top: 12px; background: #f7b3b3; color: #5b2b2b; padding: 10px 14px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; }
+
+/* -------------------------------------
+   Ajustes finais
+   ------------------------------------- */
+/* Remova conflitos com antigas regras de .hero-img se houver duplicidade */
