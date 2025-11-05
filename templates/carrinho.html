@@ -26,14 +26,18 @@
 
     <main>
         {% if itens %}
-            <ul>
+            <ul class="carrinho-lista">
                 {% for item in itens %}
-                <li>{{ item[1] }} — R$ {{ "%.2f"|format(item[2]) }}</li>
+                <li>
+                    <img src="/static/imagens/{{ item[3] }}" alt="{{ item[1] }}" class="produto-img">
+                    {{ item[1] }} — R$ {{ "%.2f"|format(item[2]) }}
+                </li>
                 {% endfor %}
-            </ul>
+           </ul>
         {% else %}
-            <p>Seu carrinho está vazio.</p>
+           <p>Seu carrinho está vazio.</p>
         {% endif %}
     </main>
+
 </body>
 </html>

@@ -9,7 +9,7 @@ app.secret_key = 'segredo'
 def get_produtos():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT id, nome, descricao, preco FROM produtos")
+    cursor.execute("SELECT id, nome, descricao, preco, imagem FROM produtos")
     produtos = cursor.fetchall()
     conn.close()
     return produtos
@@ -45,7 +45,7 @@ def carrinho():
     else:
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        cursor.execute("SELECT id, nome, preco FROM produtos WHERE id IN ({})".format(",".join("?"*len(ids))), ids)
+        cursor.execute("SELECT id, nome, preco, imagem FROM produtos WHERE id IN ({})".format(",".join("?"*len(ids))), ids)
         itens = cursor.fetchall()
         conn.close()
     return render_template("carrinho.html", itens=itens)

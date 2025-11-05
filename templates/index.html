@@ -35,6 +35,7 @@
         <div class="produtos">
             {% for p in produtos %}
             <div class="produto">
+                <img src="/static/imagens/{{ p[4] }}" alt="{{ p[1] }}" class="produto-img">
                 <h3>{{ p[1] }}</h3>
                 <p>{{ p[2] }}</p>
                 <p><strong>R$ {{ "%.2f"|format(p[3]) }}</strong></p>
@@ -42,6 +43,7 @@
             </div>
             {% endfor %}
         </div>
+
     </main>
 
     <footer>
