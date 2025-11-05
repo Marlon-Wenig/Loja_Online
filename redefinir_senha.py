@@ -2,7 +2,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash
 
 # Dados do administrador
-email_admin = "admin@maju.com"
+email_admin = "Marlon_sergio96@hotmail.com"
 nova_senha = "admin1230"  # você pode trocar por outra senha segura
 
 # Conecta ao banco
