@@ -141,3 +141,9 @@ footer p {
     margin: 0;
     color: #666;
 }
+
+.hero-img { width: 100%; max-width: 800px; height: 344px; object-fit: cover; display:block; }
+/* Ajuste para telas menores */
+@media (max-width: 600px) {
+    .hero-img { height: 200px; }
+}
