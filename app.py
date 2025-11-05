@@ -110,8 +110,22 @@ def meus_pedidos():
     return render_template("pedidos.html", pedidos=pedidos)
 
 # Painel administrativo
-@app.route("/admin", methods=["GET", "POST"])
+@app.route("/admin")
 def admin():
+    if session.get("usuario_id") != 1:
+        flash("Acesso restrito ao administrador.")
+        return redirect(url_for("index"))
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, nome, preco, imagem FROM produtos")
+    produtos = cursor.fetchall()
+    conn.close()
+    return render_template("admin.html", produtos=produtos)
+
+@app.route("/adicionar-produto", methods=["GET", "POST"])
+def adicionar_produto():
+    if session.get("usuario_id") != 1:
+        return redirect(url_for("index"))
     if request.method == "POST":
         nome = request.form["nome"]
         descricao = request.form["descricao"]
@@ -122,8 +136,42 @@ def admin():
         cursor.execute("INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)", (nome, descricao, preco, imagem))
         conn.commit()
         conn.close()
-        flash("Produto adicionado!")
-    return render_template("admin.html")
+        flash("Produto adicionado com sucesso.")
+        return redirect(url_for("admin"))
+    return render_template("adicionar_produto.html")
+
+@app.route("/editar-produto/<int:id>", methods=["GET", "POST"])
+def editar_produto(id):
+    if session.get("usuario_id") != 1:
+        return redirect(url_for("index"))
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    if request.method == "POST":
+        nome = request.form["nome"]
+        preco = float(request.form["preco"])
+        imagem = request.form["imagem"]
+        cursor.execute("UPDATE produtos SET nome=?, preco=?, imagem=? WHERE id=?", (nome, preco, imagem, id))
+        conn.commit()
+        conn.close()
+        flash("Produto atualizado.")
+        return redirect(url_for("admin"))
+    cursor.execute("SELECT nome, preco, imagem FROM produtos WHERE id=?", (id,))
+    produto = cursor.fetchone()
+    conn.close()
+    return render_template("editar_produto.html", produto=produto, id=id)
+
+@app.route("/excluir-produto/<int:id>")
+def excluir_produto(id):
+    if session.get("usuario_id") != 1:
+        return redirect(url_for("index"))
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM produtos WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+    flash("Produto excluído.")
+    return redirect(url_for("admin"))
+
 
 # Login
 @app.route("/login", methods=["GET", "POST"])
