@@ -12,10 +12,10 @@ if "imagem" not in colunas:
     cursor.execute("ALTER TABLE produtos ADD COLUMN imagem TEXT")
 
     # Atualiza os produtos com imagens padrão
-    cursor.execute("UPDATE produtos SET imagem = 'camiseta.jpg' WHERE nome = 'Camiseta'")
-    cursor.execute("UPDATE produtos SET imagem = 'tenis.jpg' WHERE nome = 'Tênis'")
-    cursor.execute("UPDATE produtos SET imagem = 'mochila.jpg' WHERE nome = 'Mochila'")
-    cursor.execute("UPDATE produtos SET imagem = 'fone.jpg' WHERE nome = 'Fone de Ouvido'")
+    cursor.execute("UPDATE produtos SET imagem = 'camiseta.png' WHERE nome = 'Camiseta'")
+    cursor.execute("UPDATE produtos SET imagem = 'tenis.png' WHERE nome = 'Tênis'")
+    cursor.execute("UPDATE produtos SET imagem = 'mochila.png' WHERE nome = 'Mochila'")
+    cursor.execute("UPDATE produtos SET imagem = 'fone.png' WHERE nome = 'Fone de Ouvido'")
 
     conn.commit()
     print("Coluna adicionada e imagens atualizadas com sucesso.")
