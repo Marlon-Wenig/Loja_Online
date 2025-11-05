@@ -2,19 +2,32 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meus Pedidos</title>
+    <title>Meus Pedidos - Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h2>Meus Pedidos</h2>
+    <header>
+        <h1>Meus Pedidos</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/carrinho">Carrinho</a>
+            <a href="/logout">Sair</a>
+        </nav>
+    </header>
 
-    <ul class="carrinho-lista">
-        {% for p in pedidos %}
-        <li>
-            <img src="/static/imagens/{{ p[2] }}" alt="{{ p[0] }}" class="produto-img">
-            {{ p[0] }} — R$ {{ "%.2f"|format(p[1]) }}
-        </li>
-        {% endfor %}
-    </ul>
+    <main>
+        {% if pedidos %}
+            <ul class="pedidos-lista">
+                {% for p in pedidos %}
+                <li>
+                    <img src="/static/imagens/{{ p[2] }}" width="60">
+                    {{ p[0] }} - R$ {{ "%.2f"|format(p[1]) }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Você ainda não fez nenhum pedido.</p>
+        {% endif %}
+    </main>
 </body>
 </html>

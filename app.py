@@ -112,7 +112,7 @@ def meus_pedidos():
 # Painel administrativo
 @app.route("/admin")
 def admin():
-    if session.get("usuario_id") != 1:
+    if session.get("is_admin") != 1:
         flash("Acesso restrito ao administrador.")
         return redirect(url_for("index"))
     conn = sqlite3.connect("database.db")
@@ -124,7 +124,7 @@ def admin():
 
 @app.route("/adicionar-produto", methods=["GET", "POST"])
 def adicionar_produto():
-    if session.get("usuario_id") != 1:
+    if session.get("is_admin") != 1:
         return redirect(url_for("index"))
     if request.method == "POST":
         nome = request.form["nome"]
@@ -142,7 +142,7 @@ def adicionar_produto():
 
 @app.route("/editar-produto/<int:id>", methods=["GET", "POST"])
 def editar_produto(id):
-    if session.get("usuario_id") != 1:
+    if session.get("is_admin") != 1:
         return redirect(url_for("index"))
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
@@ -162,7 +162,7 @@ def editar_produto(id):
 
 @app.route("/excluir-produto/<int:id>")
 def excluir_produto(id):
-    if session.get("usuario_id") != 1:
+    if session.get("is_admin") != 1:
         return redirect(url_for("index"))
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
@@ -172,7 +172,6 @@ def excluir_produto(id):
     flash("Produto excluído.")
     return redirect(url_for("admin"))
 
-
 # Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -181,11 +180,12 @@ def login():
         senha = request.form["senha"]
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        cursor.execute("SELECT id, senha FROM usuarios WHERE email = ?", (email,))
+        cursor.execute("SELECT id, senha, is_admin FROM usuarios WHERE email = ?", (email,))
         usuario = cursor.fetchone()
         conn.close()
         if usuario and check_password_hash(usuario[1], senha):
             session["usuario_id"] = usuario[0]
+            session["is_admin"] = usuario[2]
             flash("Login realizado com sucesso!")
             return redirect(url_for("index"))
         else:
@@ -215,6 +215,7 @@ def cadastro():
 @app.route("/logout")
 def logout():
     session.pop("usuario_id", None)
+    session.pop("is_admin", None)
     session.pop("carrinho", None)
     flash("Você saiu da conta.")
     return redirect(url_for("index"))

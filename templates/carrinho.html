@@ -2,36 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Seu Carrinho</title>
+    <title>Carrinho - Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
         <h1>Seu Carrinho</h1>
         <nav>
-            <a href="/">Voltar à loja</a>
+            <a href="/">Home</a>
+            <a href="/meus-pedidos">Meus Pedidos</a>
             <a href="/logout">Sair</a>
         </nav>
     </header>
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flash">
-          {% for msg in messages %}
-            <li>{{ msg }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
 
     <main>
         {% if itens %}
             <ul class="carrinho-lista">
                 {% for item in itens %}
                 <li>
-                    <img src="/static/imagens/{{ item[3] }}" alt="{{ item[1] }}" class="produto-img">
-                    {{ item[1] }} — R$ {{ "%.2f"|format(item[2]) }}
-                    <a href="/remover/{{ item[0] }}"><button>Remover</button></a>
+                    <img src="/static/imagens/{{ item[3] }}" width="60">
+                    {{ item[1] }} - R$ {{ "%.2f"|format(item[2]) }}
+                    <a href="/remover/{{ item[0] }}">Remover</a>
                 </li>
                 {% endfor %}
             </ul>

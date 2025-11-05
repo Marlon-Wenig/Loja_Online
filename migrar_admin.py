@@ -16,7 +16,7 @@ else:
     print("A coluna 'is_admin' já existe.")
 
 # Torna um usuário administrador (substitua pelo email desejado)
-email_admin = "admin@maju.com"
+email_admin = "Marlon_sergio96@hotmail.com"
 cursor.execute("UPDATE usuarios SET is_admin = 1 WHERE email = ?", (email_admin,))
 conn.commit()
 print(f"Usuário com email {email_admin} agora é administrador.")
