@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>Seu Carrinho</h1>
+        <h1>Maju Store</h1>
         <nav>
             <a href="/">Home</a>
             <a href="/meus-pedidos">Meus Pedidos</a>
@@ -16,21 +16,27 @@
     </header>
 
     <main>
+        <h2>Seu Carrinho</h2>
         {% if itens %}
             <ul class="carrinho-lista">
                 {% for item in itens %}
-                <li>
-                    <img src="/static/imagens/{{ item[3] }}" width="60">
-                    {{ item[1] }} - R$ {{ "%.2f"|format(item[2]) }}
-                    <a href="/remover/{{ item[0] }}">Remover</a>
+                <li class="carrinho-item">
+                    <img src="/static/imagens/{{ item[3] }}" alt="{{ item[1] }}" class="carrinho-img">
+                    <span>{{ item[1] }}</span>
+                    <span>R$ {{ "%.2f"|format(item[2]) }}</span>
+                    <a href="/remover/{{ item[0] }}" class="remover-btn">🗑️ Remover</a>
                 </li>
                 {% endfor %}
             </ul>
-            <p><strong>Total: R$ {{ "%.2f"|format(total) }}</strong></p>
-            <a href="/finalizar"><button>Finalizar Compra</button></a>
+            <p class="carrinho-total"><strong>Total: R$ {{ "%.2f"|format(total) }}</strong></p>
+            <a href="/finalizar"><button class="finalizar-btn">Finalizar Compra</button></a>
         {% else %}
             <p>Seu carrinho está vazio.</p>
         {% endif %}
     </main>
+
+    <footer>
+        <p>&copy; 2025 Maju Store. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

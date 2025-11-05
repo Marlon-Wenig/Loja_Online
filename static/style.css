@@ -10,31 +10,56 @@ body {
     padding: 0;
 }
 
+/* ===== HEADER AJUSTADO ===== */
 header {
-    background-color: #0056b3;
-    color: white;
-    padding: 20px 0;
+    background-color: transparent !important; /* Remove o azul */
+    color: #333;
+    padding: 10px 0;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: none;
+    position: absolute; /* Fica sobre o banner */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
 }
 
-nav a {
-    color: white;
+/* Nome da loja */
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Menu de navegação */
+header nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+/* Links do menu */
+header nav a {
+    color: #5b2b2b !important;
     text-decoration: none;
-    margin: 0 12px;
-    font-weight: 500;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ffdd57;
+header nav a:hover {
+    color: #f48b8b;
 }
 
+/* Espaço extra abaixo do topo */
 main {
     padding: 20px;
     max-width: 1000px;
-    margin: auto;
+    margin: 120px auto 0; /* empurra o conteúdo para baixo do header */
 }
 
+/* ------------------------------------- */
 form {
     max-width: 500px;
     margin: 30px auto;
@@ -140,6 +165,7 @@ footer {
     background-color: #eee;
     margin-top: 40px;
 }
+
 footer p {
     margin: 0;
     color: #666;
@@ -269,8 +295,6 @@ footer p {
 /* -------------------------------------
    Ajustes finais
    ------------------------------------- */
-/* Remova conflitos com antigas regras de .hero-img se houver duplicidade */
-/* Banner compacto para login */
 .login-hero {
   text-align: center;
   margin: 20px auto;
@@ -284,7 +308,6 @@ footer p {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* Formulário centralizado */
 .login-container {
   max-width: 400px;
   margin: 20px auto;
@@ -319,4 +342,64 @@ footer p {
   border: none;
   font-weight: 700;
   cursor: pointer;
+}
+
+/* -------------------------------------
+   Estilos para a página de carrinho
+   ------------------------------------- */
+.carrinho-lista {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.carrinho-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.carrinho-img {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.remover-btn {
+  color: #d9534f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.remover-btn:hover {
+  text-decoration: underline;
+}
+
+.carrinho-total {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+.finalizar-btn {
+  display: block;
+  margin: 0 auto;
+  background: #f7b3b3;
+  color: #5b2b2b;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.finalizar-btn:hover {
+  background: #e89ca0;
 }
