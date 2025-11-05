@@ -201,14 +201,10 @@ def cadastro():
         senha = generate_password_hash(request.form["senha"])
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        try:
-            cursor.execute("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)", (nome, email, senha))
-            conn.commit()
-            flash("Cadastro realizado com sucesso!")
-            return redirect(url_for("login"))
-        except sqlite3.IntegrityError:
-            flash("Email já cadastrado.")
+        cursor.execute("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)", (nome, email, senha))
+        conn.commit()
         conn.close()
+        return redirect("/login")
     return render_template("cadastro.html")
 
 # Logout
