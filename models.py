@@ -13,10 +13,10 @@ CREATE TABLE produtos (
 """)
 
 produtos = [
-    ("Camiseta", "T-shirt confortável", 49.90, "camiseta.jpg"),
-    ("Tênis", "Tênis de alta qualidade", 199.90, "tenis.jpg"),
-    ("Mochila", "Mochila para o dia a dia", 149.90, "mochila.jpg"),
-    ("Fone de Ouvido", "Fones de ouvido sem fio", 299.90, "fone.jpg")
+    ("Camiseta", "T-shirt confortável", 49.90, "camiseta.png"),
+    ("Tênis", "Tênis de alta qualidade", 199.90, "tenis.png"),
+    ("Mochila", "Mochila para o dia a dia", 149.90, "mochila.png"),
+    ("Fone de Ouvido", "Fones de ouvido sem fio", 299.90, "fone.png")
 ]
 
 cursor.executemany("INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)", produtos)
