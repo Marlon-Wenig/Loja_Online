@@ -21,6 +21,17 @@ def index():
     produtos = get_produtos()
     return render_template("index.html", produtos=produtos, usuario_logado=usuario_logado)
 
+# Buscar produtos
+@app.route("/buscar", methods=["POST"])
+def buscar():
+    termo = request.form["termo"]
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, nome, descricao, preco, imagem FROM produtos WHERE nome LIKE ?", ('%' + termo + '%',))
+    produtos = cursor.fetchall()
+    conn.close()
+    return render_template("index.html", produtos=produtos, usuario_logado=session.get("usuario_id"))
+
 # Adicionar produto ao carrinho
 @app.route("/adicionar/<int:id>")
 def adicionar(id):
@@ -33,6 +44,16 @@ def adicionar(id):
     flash("Produto adicionado ao carrinho!")
     return redirect(url_for("index"))
 
+# Remover item do carrinho
+@app.route("/remover/<int:id>")
+def remover(id):
+    carrinho = session.get("carrinho", [])
+    if id in carrinho:
+        carrinho.remove(id)
+        session["carrinho"] = carrinho
+        flash("Item removido do carrinho.")
+    return redirect(url_for("carrinho"))
+
 # Ver carrinho
 @app.route("/carrinho")
 def carrinho():
@@ -42,15 +63,69 @@ def carrinho():
     ids = session.get("carrinho", [])
     if not ids:
         itens = []
+        total = 0
     else:
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
         cursor.execute("SELECT id, nome, preco, imagem FROM produtos WHERE id IN ({})".format(",".join("?"*len(ids))), ids)
         itens = cursor.fetchall()
         conn.close()
-    return render_template("carrinho.html", itens=itens)
+        total = sum(item[2] for item in itens)
+    return render_template("carrinho.html", itens=itens, total=total)
 
-# Página de login
+# Finalizar compra
+@app.route("/finalizar")
+def finalizar():
+    if "usuario_id" not in session:
+        return redirect(url_for("login"))
+    ids = session.get("carrinho", [])
+    if not ids:
+        flash("Seu carrinho está vazio.")
+        return redirect(url_for("index"))
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    for pid in ids:
+        cursor.execute("INSERT INTO pedidos (usuario_id, produto_id) VALUES (?, ?)", (session["usuario_id"], pid))
+    conn.commit()
+    conn.close()
+    session["carrinho"] = []
+    flash("Compra finalizada com sucesso!")
+    return redirect(url_for("index"))
+
+# Histórico de pedidos
+@app.route("/meus-pedidos")
+def meus_pedidos():
+    if "usuario_id" not in session:
+        return redirect(url_for("login"))
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT produtos.nome, produtos.preco, produtos.imagem
+        FROM pedidos
+        JOIN produtos ON pedidos.produto_id = produtos.id
+        WHERE pedidos.usuario_id = ?
+    """, (session["usuario_id"],))
+    pedidos = cursor.fetchall()
+    conn.close()
+    return render_template("pedidos.html", pedidos=pedidos)
+
+# Painel administrativo
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if request.method == "POST":
+        nome = request.form["nome"]
+        descricao = request.form["descricao"]
+        preco = float(request.form["preco"])
+        imagem = request.form["imagem"]
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?, ?, ?, ?)", (nome, descricao, preco, imagem))
+        conn.commit()
+        conn.close()
+        flash("Produto adicionado!")
+    return render_template("admin.html")
+
+# Login
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -69,7 +144,7 @@ def login():
             flash("Email ou senha inválidos.")
     return render_template("login.html")
 
-# Página de cadastro
+# Cadastro
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":

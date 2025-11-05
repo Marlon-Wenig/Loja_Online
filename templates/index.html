@@ -11,6 +11,8 @@
         <nav>
             <a href="/">Home</a>
             <a href="/carrinho">Carrinho</a>
+            <a href="/meus-pedidos">Meus Pedidos</a>
+            <a href="/admin">Admin</a>
             {% if usuario_logado %}
                 <a href="/logout">Sair</a>
             {% else %}
@@ -31,7 +33,12 @@
     {% endwith %}
 
     <main>
-        <h2>Bem-vindo à nossa loja!</h2>
+        <form method="POST" action="/buscar">
+            <input type="text" name="termo" placeholder="Buscar produto...">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <h2>Produtos</h2>
         <div class="produtos">
             {% for p in produtos %}
             <div class="produto">
@@ -43,7 +50,6 @@
             </div>
             {% endfor %}
         </div>
-
     </main>
 
     <footer>

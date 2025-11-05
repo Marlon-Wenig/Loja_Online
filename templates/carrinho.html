@@ -31,13 +31,15 @@
                 <li>
                     <img src="/static/imagens/{{ item[3] }}" alt="{{ item[1] }}" class="produto-img">
                     {{ item[1] }} — R$ {{ "%.2f"|format(item[2]) }}
+                    <a href="/remover/{{ item[0] }}"><button>Remover</button></a>
                 </li>
                 {% endfor %}
-           </ul>
+            </ul>
+            <p><strong>Total: R$ {{ "%.2f"|format(total) }}</strong></p>
+            <a href="/finalizar"><button>Finalizar Compra</button></a>
         {% else %}
-           <p>Seu carrinho está vazio.</p>
+            <p>Seu carrinho está vazio.</p>
         {% endif %}
     </main>
-
 </body>
 </html>
