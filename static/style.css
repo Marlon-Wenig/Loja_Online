@@ -180,3 +180,47 @@ footer {
         width: 100%;
     }
 }
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.login-container form input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.cadastro-link {
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
