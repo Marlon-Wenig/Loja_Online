@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja Online</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>LOJA ONLINE</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/carrinho">Carrinho</a>
+            {% if usuario_logado %}
+                <a href="/logout">Sair</a>
+            {% else %}
+                <a href="/login">Entrar</a>
+                <a href="/cadastro">Cadastrar</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <main>
+        <h2>Bem-vindo à nossa loja!</h2>
+        <div class="produtos">
+            {% for p in produtos %}
+            <div class="produto">
+                <h3>{{ p[1] }}</h3>
+                <p>{{ p[2] }}</p>
+                <p><strong>R$ {{ "%.2f"|format(p[3]) }}</strong></p>
+                <a href="/adicionar/{{ p[0] }}"><button>Comprar</button></a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Loja Online</p>
+    </footer>
+</body>
+</html>

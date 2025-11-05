@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Carrinho</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Seu Carrinho</h1>
+        <nav>
+            <a href="/">Voltar à loja</a>
+            <a href="/logout">Sair</a>
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <main>
+        {% if itens %}
+            <ul>
+                {% for item in itens %}
+                <li>{{ item[1] }} — R$ {{ "%.2f"|format(item[2]) }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Seu carrinho está vazio.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
