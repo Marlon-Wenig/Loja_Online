@@ -12,7 +12,11 @@
             <a href="/">Home</a>
             <a href="/carrinho">Carrinho</a>
             <a href="/meus-pedidos">Meus Pedidos</a>
-            <a href="/admin">Admin</a>
+
+            {% if usuario_logado == 1 %}
+                <a href="/admin">Admin</a>
+            {% endif %}
+
             {% if usuario_logado %}
                 <a href="/logout">Sair</a>
             {% else %}
@@ -20,6 +24,7 @@
                 <a href="/cadastro">Cadastrar</a>
             {% endif %}
         </nav>
+
     </header>
 
     {% with messages = get_flashed_messages() %}
