@@ -3,6 +3,17 @@ import sqlite3
 conn = sqlite3.connect("database.db")
 cursor = conn.cursor()
 
+# Cria a tabela 'usuarios' se não existir
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    senha TEXT NOT NULL
+)
+""")
+conn.commit()
+
 # Verifica se a coluna 'is_admin' já existe
 cursor.execute("PRAGMA table_info(usuarios)")
 colunas = [col[1] for col in cursor.fetchall()]
@@ -22,3 +33,4 @@ conn.commit()
 print(f"Usuário com email {email_admin} agora é administrador.")
 
 conn.close()
+
