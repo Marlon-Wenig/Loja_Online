@@ -403,3 +403,35 @@ footer p {
 .finalizar-btn:hover {
   background: #e89ca0;
 }
+/* Centralização vertical e horizontal para páginas com banner + formulário */
+.centralizado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 100px; /* espaço para o header fixo */
+  box-sizing: border-box;
+}
+
+/* Ajusta o formulário para não ficar muito largo */
+.centralizado .login-container,
+.centralizado .login-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+/* Ajusta o banner para centralização */
+.centralizado .login-hero {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.centralizado .login-hero-img {
+  width: 360px;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
