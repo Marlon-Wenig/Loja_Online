@@ -2,28 +2,24 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="login-banner">
+        <img src="/static/imagens/maju-banner.png" alt="Bem-vindo à Maju Store">
+    </div>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flash">
-          {% for msg in messages %}
-            <li>{{ msg }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="senha" placeholder="Senha" required><br>
-        <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="password" name="senha" placeholder="Senha" required><br>
+            <button type="submit">Entrar</button>
+        </form>
+        <p class="cadastro-link">Não tem conta? <a href="/cadastro">Cadastrar-se</a></p>
+    </div>
 </body>
 </html>
-
+        <p>&copy; 2025 Maju Store. Todos os direitos reservados.</p>
+    </footer>

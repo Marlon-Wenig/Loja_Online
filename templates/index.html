@@ -2,21 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Loja Online</title>
+    <title>Maju Store</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
-        <h1>LOJA ONLINE</h1>
+        <h1>Maju Store</h1>
         <nav>
             <a href="/">Home</a>
             <a href="/carrinho">Carrinho</a>
             <a href="/meus-pedidos">Meus Pedidos</a>
-
             {% if usuario_logado == 1 %}
                 <a href="/admin">Admin</a>
             {% endif %}
-
             {% if usuario_logado %}
                 <a href="/logout">Sair</a>
             {% else %}
@@ -24,7 +22,6 @@
                 <a href="/cadastro">Cadastrar</a>
             {% endif %}
         </nav>
-
     </header>
 
     {% with messages = get_flashed_messages() %}
@@ -58,7 +55,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Loja Online</p>
+        <p>&copy; 2025 Maju Store. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
