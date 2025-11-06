@@ -192,19 +192,32 @@ def login():
             flash("Email ou senha inválidos.")
     return render_template("login.html")
 
-# Cadastro
+# Cadastro atualizado
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
         nome = request.form["nome"]
         email = request.form["email"]
         senha = generate_password_hash(request.form["senha"])
+
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
+
+        cursor.execute("SELECT id FROM usuarios WHERE email = ?", (email,))
+        existente = cursor.fetchone()
+
+        if existente:
+            conn.close()
+            flash("Este email já está cadastrado. Faça login ou use outro email.")
+            return redirect(url_for("cadastro"))
+
         cursor.execute("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)", (nome, email, senha))
         conn.commit()
         conn.close()
-        return redirect("/login")
+
+        flash("Cadastro realizado com sucesso! Faça login.")
+        return redirect(url_for("login"))
+
     return render_template("cadastro.html")
 
 # Logout
