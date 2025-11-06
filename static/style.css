@@ -474,9 +474,107 @@ footer p {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   text-align: center;
 }
+.login-container {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 28px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.login-container h2 {
+  font-size: 1.6rem;
+  color: #5b2b2b;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
 .login-form label {
   display: block;
+  text-align: left;
   margin-top: 12px;
-  color: #5b2b2b;
   font-weight: 600;
+  color: #5b2b2b;
+  font-size: 0.95rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #e0d6d6;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fdfdfd;
+}
+
+.login-form button {
+  margin-top: 18px;
+  background: #f7b3b3;
+  color: #5b2b2b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-form button:hover {
+  background: #e89ca0;
+}
+
+.cadastro-link {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #5b2b2b;
+}
+
+.cadastro-link a {
+  color: #a64f4f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cadastro-link a:hover {
+  text-decoration: underline;
+}
+/* Campo de busca feminino e centralizado */
+.busca-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+.busca-form input[name="termo"] {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 70%;
+  max-width: 400px;
+}
+
+.busca-form button[type="submit"] {
+  background: #f7b3b3;
+  color: #5b2b2b;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.busca-form button[type="submit"]:hover {
+  background: #e89ca0;
+  transform: scale(1.03);
 }

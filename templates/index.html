@@ -24,16 +24,12 @@
         </nav>
     </header>
 
-    <!-- Hero banner: coloque a imagem em /static/imagens/maju-banner-800x344.jpg -->
+    <!-- Banner principal -->
     <section class="hero" aria-label="Banner principal Maju Store">
-      <img src="/static/imagens/maju-banner-800x344.png" alt="Bem-vindos à Maju Store — moda feminina" class="hero-img">
-      <div class="hero-content" role="group" aria-hidden="false">
-        <div class="hero-text" role="article">
-          <a class="hero-cta" href="/produtos">Ver novidades</a>
+        <img src="/static/imagens/maju-banner-800x344.png" alt="Bem-vindos à Maju Store — moda feminina" class="hero-img">
+        <div class="hero-content" role="group" aria-hidden="false">
+            <img src="/static/imagens/maju-banner-decor.png" alt="" class="hero-decoration" aria-hidden="true">
         </div>
-        <!-- Retire esta imagem se causar sobreposição indesejada -->
-        <img src="/static/imagens/maju-banner-decor.png" alt="" class="hero-decoration" aria-hidden="true">
-      </div>
     </section>
 
     {% with messages = get_flashed_messages() %}
@@ -46,10 +42,11 @@
       {% endif %}
     {% endwith %}
 
-    <main>
-        <form method="POST" action="/buscar">
+    <main class="centralizado">
+        <!-- Campo de busca estilizado -->
+        <form method="POST" action="/buscar" class="busca-form">
             <input type="text" name="termo" placeholder="Buscar produto...">
-            <button type="submit">Buscar</button>
+            <button type="submit">🔍 Buscar</button>
         </form>
 
         <h2>Produtos</h2>
@@ -71,4 +68,5 @@
     </footer>
 </body>
 </html>
+
 
